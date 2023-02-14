@@ -1,0 +1,42 @@
+{
+  "name": "logkar-test",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "commit": "git-cz",
+    "postinstall": "husky install"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.3",
+    "@commitlint/config-conventional": "^17.4.3",
+    "@headlessui/react": "^1.7.10",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "autoprefixer": "^10.4.13",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.34.0",
+    "framer-motion": "^9.0.2",
+    "husky": "^8.0.3",
+    "postcss": "^8.4.21",
+    "react-icons": "^4.7.1",
+    "react-router-dom": "^6.8.1",
+    "tailwindcss": "^3.2.6",
+    "typescript": "^4.9.3",
+    "vite": "^4.1.0"
+  }
+}
