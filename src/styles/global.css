@@ -10,7 +10,7 @@
 }
 
 #root {
-  @apply h-[100vh] relative flex flex-col mx-auto overflow-hidden max-w-sm bg-background sm:rounded-2xl
+  @apply h-[100vh] relative flex flex-col mx-auto overflow-hidden max-w-sm bg-background
 }
 
 header {
@@ -22,4 +22,21 @@ body {
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
   @apply bg-dark text-text;
+}
+
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #b06ab3;
 }

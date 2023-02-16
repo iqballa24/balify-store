@@ -1,5 +1,10 @@
-import { menuTypes } from "@/lib/types";
-import { AiOutlineHome, AiOutlineCompass, AiOutlineShoppingCart, AiOutlineHistory } from "react-icons/ai";
+import { menuTypes } from '@/lib/types';
+import {
+  AiOutlineHome,
+  AiOutlineCompass,
+  AiOutlineShoppingCart,
+  AiOutlineHistory,
+} from 'react-icons/ai';
 
 const menus: menuTypes[] = [
   {
@@ -20,12 +25,6 @@ const menus: menuTypes[] = [
     icon: AiOutlineShoppingCart,
     path: '/cart',
   },
-  {
-    id: 4,
-    name: 'History',
-    icon: AiOutlineHistory,
-    path: '/history',
-  },
 ];
 
-export default menus
+export default menus;
