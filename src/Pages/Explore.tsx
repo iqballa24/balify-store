@@ -27,9 +27,7 @@ const Explore = () => {
   }, []);
 
   useEffect(() => {
-    if (!firstRender.current) {
-      dispatch(asyncGetVehicles(currentPage));
-    }
+    dispatch(asyncGetVehicles(currentPage));
   }, [currentPage]);
 
   const fetchMoreData = () => {
