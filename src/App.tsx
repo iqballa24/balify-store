@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAppSelector } from '@/hooks/useRedux';
 import { Spinner } from '@/components/UI';
@@ -6,12 +6,12 @@ import Layout from '@/components/Layout';
 import AuthLayout from '@/components/Layout/AuthLayout';
 import ProtectedRoute from '@/components/ProtectedRoute';
 
-const Homepage = React.lazy(() => import('./Pages/Home'));
-const ExplorePage = React.lazy(() => import('./Pages/Explore'));
-const CartPage = React.lazy(() => import('./Pages/Cart'));
-const Login = React.lazy(() => import('./Pages/Login'));
-const Register = React.lazy(() => import('./Pages/Register'));
-const SuccessOrder = React.lazy(() => import('./Pages/Success'));
+const Homepage = React.lazy(() => import('./pages/Home'));
+const ExplorePage = React.lazy(() => import('./pages/Explore'));
+const CartPage = React.lazy(() => import('./pages/Cart'));
+const Login = React.lazy(() => import('./pages/Login'));
+const Register = React.lazy(() => import('./pages/Register'));
+const SuccessOrder = React.lazy(() => import('./pages/Success'));
 
 function App() {
   const { isAuthenticate } = useAppSelector((state) => state.auth);
