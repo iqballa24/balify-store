@@ -53,7 +53,6 @@ const loginUser = async ({ email, password }: LoginTypes) => {
     if (err instanceof Error) {
       throw new Error(err.message);
     } else {
-      console.log(err);
       throw new Error('Opss, something went wrong');
     }
   }
@@ -73,7 +72,6 @@ const getUserById = async (id: string) => {
     if (err instanceof Error) {
       throw new Error(err.message);
     } else {
-      console.log(err);
       throw new Error('Ops, something went wrong');
     }
   }
@@ -98,7 +96,6 @@ const updateUser = async (uid: string, data: UserTypes) => {
     if (err instanceof Error) {
       throw new Error(err.message);
     } else {
-      console.log(err);
       throw new Error('Ops, something went wrong');
     }
   }

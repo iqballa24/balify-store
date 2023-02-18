@@ -18,7 +18,6 @@ const fetchVehicles = async (url: string) => {
     const res = await APISwapi.get(url);
 
     if (res.status !== 200) {
-      console.log('tester');
       throw Error('Request failed');
     }
 

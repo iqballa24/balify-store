@@ -1,8 +1,8 @@
 import React from 'react';
 import { Buttons } from '@/components/UI';
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux';
-import { asyncOrderItem } from '@/store/shared/action';
 import { useNavigate } from 'react-router-dom';
+import { cartSliceAction } from '@/store/cart';
 
 const ListOrder = () => {
   const navigate = useNavigate();
@@ -10,7 +10,8 @@ const ListOrder = () => {
   const { item } = useAppSelector((state) => state.cart);
 
   const orderHandler = () => {
-    dispatch(asyncOrderItem());
+    dispatch(cartSliceAction.changeStatusOrder());
+    dispatch(cartSliceAction.clearItem());
     navigate('/order-success');
   };
 

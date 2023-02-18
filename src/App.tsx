@@ -14,9 +14,9 @@ const Register = React.lazy(() => import('./Pages/Register'));
 const SuccessOrder = React.lazy(() => import('./Pages/Success'));
 
 function App() {
-  const { auth } = useAppSelector((state) => state);
+  const { isAuthenticate } = useAppSelector((state) => state.auth);
 
-  if (auth.isAuthenticate) {
+  if (isAuthenticate) {
     return (
       <Layout>
         <Suspense fallback={<Spinner />}>

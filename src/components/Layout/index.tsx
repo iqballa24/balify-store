@@ -4,14 +4,14 @@ import LoadingBar from 'react-redux-loading-bar';
 import Header from '@/components/Layout/Header';
 import Footer from '@/components/Layout/Footer';
 import { useAppDispatch } from '@/hooks/useRedux';
-import { asyncPreloaderProcess } from '@/store/auth/action';
+import { asyncPreloaderProcess } from '@/store/shared/action';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(asyncPreloaderProcess());
-  }, []);
+  }, [dispatch]);
 
   return (
     <React.Fragment>

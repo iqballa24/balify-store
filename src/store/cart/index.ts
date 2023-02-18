@@ -7,11 +7,8 @@ export type CartType = {
   hasOrder: boolean;
 };
 
-const storeData = localStorage.getItem('carts');
-const carts = JSON.parse(storeData ? storeData : '[]');
-
 const initialState: CartType = {
-  item: carts,
+  item: [],
   totalItem: 0,
   hasOrder: false,
 };
@@ -20,15 +17,17 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    receiveCart(state, { payload }) {
+      state.item = payload;
+    },
+
     addItemToCart(state, { payload }) {
       state.item.push({ ...payload, amount: 1 });
-      localStorage.setItem('carts', JSON.stringify(state.item));
     },
 
     removeItemFromCart(state, { payload }) {
       const newCarts = state.item.filter((cart) => cart.name !== payload.name);
       state.item = newCarts;
-      localStorage.setItem('carts', JSON.stringify(state.item));
     },
 
     increaseItemCart(state, { payload }) {
@@ -44,7 +43,6 @@ const cartSlice = createSlice({
       });
 
       state.item = newCarts;
-      localStorage.setItem('carts', JSON.stringify(state.item));
     },
 
     decreseItemCart(state, { payload }) {
@@ -69,7 +67,6 @@ const cartSlice = createSlice({
         });
         state.item = newCarts;
       }
-      localStorage.setItem('carts', JSON.stringify(state.item));
     },
 
     changeStatusOrder(state) {
@@ -78,7 +75,6 @@ const cartSlice = createSlice({
 
     clearItem(state) {
       state.item = [];
-      localStorage.removeItem('carts');
     },
   },
 });

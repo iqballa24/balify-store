@@ -1,6 +1,4 @@
 import { Dispatch } from '@reduxjs/toolkit';
-import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import { onAuthStateChanged } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
 import {
   getUserById,
@@ -9,7 +7,6 @@ import {
   updateUser,
 } from '@/lib/service/firebase/API';
 import { LoginTypes, RegisterTypes, UserTypes } from '@/lib/types';
-import { auth } from '@/lib/service/firebase/config';
 import { authSliceAction } from '@/store/auth';
 import { unSetAuthUser } from '@/store/shared/action';
 
@@ -65,38 +62,6 @@ function asyncLoginUser({ email, password }: LoginTypes) {
   };
 }
 
-function asyncPreloaderProcess() {
-  return async (dispatch: Dispatch) => {
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const { uid } = user;
-
-        try {
-          dispatch(showLoading());
-          const res = await getUserById(uid);
-          const { name, phone, address, email } = res[0];
-
-          await dispatch(
-            authSliceAction.setCurrentUser({
-              name,
-              email,
-              uid,
-              address,
-              phone,
-            })
-          );
-        } catch (err) {
-          dispatch(authSliceAction.unSetCurrentUser());
-        } finally {
-          dispatch(hideLoading());
-        }
-      } else {
-        dispatch(authSliceAction.unSetCurrentUser());
-      }
-    });
-  };
-}
-
 function asyncUpdateUser(uid: string, data: UserTypes) {
   return async (dispatch: Dispatch) => {
     try {
@@ -125,10 +90,4 @@ function asyncUpdateUser(uid: string, data: UserTypes) {
   };
 }
 
-export {
-  asyncRegisterUser,
-  asyncLoginUser,
-  asyncPreloaderProcess,
-  asyncUpdateUser,
-  unSetAuthUser
-};
+export { asyncRegisterUser, asyncLoginUser, asyncUpdateUser, unSetAuthUser };

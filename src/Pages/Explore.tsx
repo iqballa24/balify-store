@@ -2,19 +2,17 @@ import React, { useEffect, useRef } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux';
 import ExploreCard from '@/components/ExploreCard';
-import { asyncGetVehicles } from '@/store/vehicles/action';
-import { vehiclesSliceAction } from '@/store/vehicles';
 import { VehicleTypes } from '@/lib/types';
-import {
-  asyncAddItemToCart,
-  asyncRemoveItemFromCart,
-} from '@/store/shared/action';
+import { cartSliceAction } from '@/store/cart';
+import { vehiclesSliceAction } from '@/store/vehicles';
+import { asyncGetVehicles } from '@/store/vehicles/action';
 
 const Explore = () => {
   const firstRender = useRef(true);
   const dispatch = useAppDispatch();
-  const { vehicles } = useAppSelector((state) => state);
-  const { currentPage, results, next } = vehicles;
+  const { currentPage, results, next } = useAppSelector(
+    (state) => state.vehicles
+  );
 
   useEffect(() => {
     if (firstRender.current) {
@@ -35,11 +33,13 @@ const Explore = () => {
   };
 
   const addItemToCart = ({ name, passengers, model }: VehicleTypes) => {
-    dispatch(asyncAddItemToCart({ name, passengers, model }));
+    dispatch(cartSliceAction.addItemToCart({ name, passengers, model }));
+    dispatch(vehiclesSliceAction.vehicleAddToCart({ name }));
   };
 
   const removeItemFromCart = (name: string) => {
-    dispatch(asyncRemoveItemFromCart(name));
+    dispatch(cartSliceAction.removeItemFromCart({ name }));
+    dispatch(vehiclesSliceAction.vehicleRemoveFromCart({ name }));
   };
 
   return (
